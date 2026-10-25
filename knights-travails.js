@@ -50,13 +50,12 @@ function knightMoves(startTile, endTile) {
     const x = currentTile[0];
     const y = currentTile[1];
 
+    //verify the tiles are not outside of the chessboard
+    // and push them into queue
     const possibleMoves = calculatePossibleMoves(startTile);
     possibleMoves.forEach((tile) => {
       if (verifyTile(tile)) queue.push(tile);
     });
-
-    //verify the tiles are not outside of the chessboard
-    // and push them into queue
   }
 }
 
