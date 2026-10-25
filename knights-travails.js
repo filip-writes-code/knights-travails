@@ -24,35 +24,18 @@ function verifyTile(tile) {
 
 function calculatePossibleMoves(tile) {
   let possibleTiles = [];
-
   const x = tile[0];
   const y = tile[1];
 
   //calculate possible moves and push to queue
-  let newX = x + 2;
-  let newY = y + 1;
-  possibleTiles.push([newX, newY]);
-  newY = y - 1;
-  possibleTiles.push([newX, newY]);
-
-  newX = x - 2;
-  newY = y - 1;
-  possibleTiles.push([newX, newY]);
-  newY = y + 1;
-  possibleTiles.push([newX, newY]);
-
-  newX = x + 1;
-  newY = y + 2;
-  possibleTiles.push([newX, newY]);
-  newY = y - 2;
-  possibleTiles.push([newX, newY]);
-
-  newX = x - 1;
-  newY = y - 2;
-  possibleTiles.push([newX, newY]);
-
-  newY = y + 2;
-  possibleTiles.push([newX, newY]);
+  possibleTiles.push([x + 2, y + 1]);
+  possibleTiles.push([x + 2, y - 1]);
+  possibleTiles.push([x - 2, y + 1]);
+  possibleTiles.push([x - 2, y - 1]);
+  possibleTiles.push([x + 1, y + 2]);
+  possibleTiles.push([x + 1, y - 2]);
+  possibleTiles.push([x - 1, y + 2]);
+  possibleTiles.push([x - 1, y - 2]);
 
   return possibleTiles;
 }
