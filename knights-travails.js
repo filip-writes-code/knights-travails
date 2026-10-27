@@ -12,7 +12,7 @@
 //
 // 0 < (x or y) < 8, or it will be out of bounds of the chessboard
 
-// calculates knight's shortest pathfrom starting tile to the destination tile
+// calculates knight's shortest path from starting tile to the destination tile
 // knightMoves([0,0],[1,2]) // returns [[0,0],[1,2]]
 
 function calculatePossibleMoves(tile) {
