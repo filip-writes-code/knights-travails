@@ -81,7 +81,7 @@ function retraceSteps(pathTrack, start, end) {
   let current = end;
 
   while (current) {
-    if (current === start) break;
+    if (JSON.stringify(current) === JSON.stringify(start)) break;
 
     finalPath.push(pathTrack[current]);
     current = pathTrack[current];
