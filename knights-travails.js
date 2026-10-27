@@ -14,6 +14,7 @@
 
 // calculates knight's shortest pathfrom starting tile to the destination tile
 // knightMoves([0,0],[1,2]) // returns [[0,0],[1,2]]
+
 function calculatePossibleMoves(tile) {
   let possibleTiles = [];
   const x = tile[0];
@@ -45,17 +46,47 @@ function calculatePossibleMoves(tile) {
 }
 
 function knightMoves(startTile, endTile) {
-  const queue = [];
-  const predecessors = {};
-  queue.push(startTile);
+  const queue = [startTile];
+  const visited = new Set();
+  const pathTrack = {};
 
+  //de-queue
   while (queue.length > 0) {
     const currentTile = queue.shift();
-    const x = currentTile[0];
-    const y = currentTile[1];
 
-    const possibleMoves = calculatePossibleMoves(startTile);
+    // if destination tile, retrace steps
+    if (JSON.stringify(currentTile) === JSON.stringify(endTile)) {
+      const result = retraceSteps(pathTrack, startTile, endTile);
+      console.log(
+        `You made it in ${result.length - 1} moves! Here's your path:`,
+      );
+      result.forEach((step) => console.log(step));
+      return result;
+    }
+
+    //calculate possible moves and put them in the queue
+    const possibleMoves = calculatePossibleMoves(currentTile);
+    possibleMoves.forEach((move) => {
+      if (!visited.has(move.join(","))) {
+        visited.add(move.join(","));
+        pathTrack[move] = currentTile;
+        queue.push(move);
+      }
+    });
   }
 }
 
-knightMoves([0, 0]);
+function retraceSteps(pathTrack, start, end) {
+  const finalPath = [end];
+  let current = end;
+
+  while (current) {
+    if (current === start) break;
+
+    finalPath.push(pathTrack[current]);
+    current = pathTrack[current];
+  }
+  return finalPath.reverse();
+}
+
+knightMoves([0, 0], [7, 7]);
